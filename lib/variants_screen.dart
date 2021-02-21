@@ -14,29 +14,15 @@ class VariantsScreen extends StatelessWidget {
           title: Text(title),
           backgroundColor: Colors.grey,
         ),
-        body: Column(children: [
-          /*headerCard(), */ Flexible(child: variantScreen(context))
-        ]));
+        body: variantScreen());
   }
 
-  Widget variantScreen(BuildContext context) {
+  Widget variantScreen() {
     return FutureBuilder<Map>(
         future: VaccineService().virusVariantScrape(variantType),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return Column(children: [
-              /*Container(
-                  height: 400,
-                  child: ListView.builder(
-                      itemCount: snapshot.data.length,
-                      itemBuilder: (context, index) {
-                        String key = snapshot.data.keys.elementAt(index);
-                        return Column(
-                          children: <Widget>[
-                            countCard(key, snapshot.data[key])
-                          ],
-                        );
-                      })),*/
               Container(
                   height: MediaQuery.of(context).size.height - 200,
                   margin:
@@ -49,57 +35,5 @@ class VariantsScreen extends StatelessWidget {
             );
           }
         });
-  }
-
-  Widget headerCard() {
-    return Card(
-        color: Colors.red[400],
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50),
-        ),
-        child: InkWell(
-            splashColor: Colors.blue.withAlpha(30),
-            child: ListTile(
-                title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                  Container(
-                      alignment: Alignment.centerLeft,
-                      width: 140,
-                      child: Text("Uke",
-                          style: TextStyle(fontSize: 16, color: Colors.white))),
-                  Container(
-                      alignment: Alignment.centerLeft,
-                      width: 60,
-                      child: Text("Antall",
-                          style: TextStyle(fontSize: 16, color: Colors.white)))
-                ]))));
-  }
-
-  Widget countCard(String week, String count) {
-    return Card(
-        color: Colors.green[400],
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50),
-        ),
-        child: InkWell(
-            splashColor: Colors.blue.withAlpha(30),
-            child: ListTile(
-                //leading:
-                //Icon(Icons.location_city, color: Colors.white, size: 20),
-                title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                  Container(
-                      alignment: Alignment.centerLeft,
-                      width: 120,
-                      child: Text(week,
-                          style: TextStyle(fontSize: 16, color: Colors.white))),
-                  Container(
-                      alignment: Alignment.centerRight,
-                      width: 50,
-                      child: Text(count,
-                          style: TextStyle(fontSize: 16, color: Colors.white)))
-                ]))));
   }
 }

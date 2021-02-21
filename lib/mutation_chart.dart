@@ -25,9 +25,7 @@ class MutationChart extends StatelessWidget {
     return charts.BarChart(
       _seriesList(ts, "Mutasjoner"),
       behaviors: [
-        charts.ChartTitle(
-            '                           Uke\n' +
-                'Siste uker vil endres med rapportering',
+        charts.ChartTitle('Uke',
             behaviorPosition: charts.BehaviorPosition.bottom,
             titleOutsideJustification:
                 charts.OutsideJustification.middleDrawArea),
