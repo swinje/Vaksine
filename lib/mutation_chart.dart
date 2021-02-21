@@ -31,6 +31,8 @@ class MutationChart extends StatelessWidget {
                 charts.OutsideJustification.middleDrawArea),
       ],
       animate: true,
+      //barRendererDecorator: charts.BarLabelDecorator<String>(),
+      //domainAxis: charts.OrdinalAxisSpec(),
     );
   }
 
@@ -38,12 +40,12 @@ class MutationChart extends StatelessWidget {
       List<TimeSeries> measurements, String title) {
     return [
       charts.Series<TimeSeries, String>(
-        id: 'Antall',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
-        domainFn: (TimeSeries ts, _) => ts.week,
-        measureFn: (TimeSeries ts, _) => int.parse(ts.count),
-        data: measurements,
-      )
+          id: 'Antall',
+          colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+          domainFn: (TimeSeries ts, _) => ts.week,
+          measureFn: (TimeSeries ts, _) => int.parse(ts.count),
+          data: measurements)
+      //labelAccessorFn: (TimeSeries ts, _) => ts.count.toString())
     ];
   }
 }
